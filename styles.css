@@ -9,6 +9,8 @@ body {
 header {
 	background: black;
 	padding: 20px;
+	margin-top: 20px;
+	font-size: 20px;
 	text-align: center;
 }
 
@@ -26,6 +28,7 @@ section {
 footer {
 	font-size:  12px;
 	background: black;
+	margin-top: 20px;
 	padding: 10px 20px;
 	text-align: center;
 }
@@ -38,6 +41,11 @@ div {
 	padding: 25px;
 	text-align: center;
 	width: 35%;
+}
+
+.student {
+	padding: 10px;
+	border: 1px solid;
 }
 
 nav ul {
@@ -79,4 +87,31 @@ a:link, a:visited, a:hover, a:active {
 	padding: 0;
 	position: relative;
 	top: -10px;
+}
+
+/* contacts */
+
+.socials {
+	padding: 25px;
+	display: flex;
+	flex-direction: row;
+}
+
+.socials figure {
+	height: 150%;
+	background: white;
+	margin: auto;
+	border-radius: 50%;
+}
+
+.socials figure img {
+	position: relative;
+	vertical-align: middle;
+	width: 200px;
+	border-radius: 50%;
+}
+
+.socials a:hover {
+	border: 0;
+	padding: 0;
 }
