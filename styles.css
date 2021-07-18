@@ -1,25 +1,28 @@
 body {
-	background: black;
-	color:  white;
-	font-family:  Helvetica Neue, Helvetica, Arial, sans-serif;
+	background: rgb(203, 223, 189);
+	color:  rgb(164, 74, 63);
+	font-family:  lato;
 	margin: 0;
 	padding: 0;
 }
 
-header {
-	background: black;
-	padding: 20px;
-	margin-top: 20px;
-	font-size: 20px;
-	text-align: center;
+header, footer{
+	background: rgb(164, 74, 63);
+	color: rgb(203, 223, 189);
 }
 
 h1 {
-	margin-bottom: 0;
+	font-size: 50px;
+	padding: 0;
+	text-align: center;
+}
+
+header {
+	font-size: 20px;
 }
 
 section {
-	color: white;
+	color: rgb(164, 74, 63);
 	padding: 10px;
 	display: flex;
 	flex-direction: row;
@@ -27,20 +30,17 @@ section {
 
 footer {
 	font-size:  12px;
-	background: black;
 	margin-top: 20px;
-	padding: 20px;
 	text-align: center;
 }
 
 div {
-	background: black;
-	border: 2px solid white;
+	background: rgb(203, 223, 189);
 	font-size: 20px;
 	margin: auto;
-	padding: 25px;
+	padding: 20px;
 	text-align: center;
-	width: 35%;
+	width: 40%;
 }
 
 .container {
@@ -87,37 +87,49 @@ button:hover {
 	width: 10%;
 }
 
+/*
 .student {
 	padding: 10px;
 	border: 1px solid;
 }
+*/
 
 nav ul {
 	margin: 0;
 	padding: 0;
-	list-style-type: none;
 }
 
 nav li {
 	display: inline-block;
-	margin: 0 40px;
+	margin: 0;
 }
 
 /* links */
 
 a {
 	text-decoration: none;
+	display: inline-block;
 }
 
 a:hover {
-	border: 2px solid white;
-	display: inline-block;
-	padding: 5px;
 	text-decoration: underline;
 }
 
-a:link, a:visited, a:hover, a:active {
-	color:  white;
+header a:link, header a:visited, footer a:link, footer a:visited {
+	color:  rgb(203, 223, 189);
+}
+
+div a:link, div a:visited {
+	color: rgb(164, 74, 63);
+}
+
+ul li a, footer a {
+	padding: 16px 32px;
+}
+
+ul li a:hover, footer a:hover {
+	background: rgb(132, 61, 51);
+	display: inline-block;
 }
 
 /* pictures */
@@ -126,12 +138,12 @@ a:link, a:visited, a:hover, a:active {
 	background-image: url("images/pong players.png");
 	background-repeat: no-repeat;
 	background-size: 256px;
-	border-width: 0;
 	height: 128px;
 	width: 256px;
 	padding: 0;
 	position: relative;
 	top: -10px;
+	margin-bottom: 25px;
 }
 
 /* contacts */
@@ -139,6 +151,7 @@ a:link, a:visited, a:hover, a:active {
 .socials {
 	padding: 25px;
 	display: flex;
+	margin-top: 30px;
 	flex-direction: row;
 }
 
@@ -154,9 +167,4 @@ a:link, a:visited, a:hover, a:active {
 	vertical-align: middle;
 	width: 200px;
 	border-radius: 50%;
-}
-
-.socials a:hover {
-	border: 0;
-	padding: 0;
 }
