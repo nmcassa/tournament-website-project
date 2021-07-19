@@ -66,11 +66,10 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 button {
-	background-color: black;
-	color: white;
+	background-color: rgb(164, 74, 63);
+	color: rgb(203, 223, 189);
 	padding: 10px 20px;
 	margin: 8px 0;
-	border: 1px solid white;
 	cursor: pointer;
 	opacity: 0.9;
 }
@@ -84,15 +83,15 @@ button:hover {
 	margin-bottom: 20px;
 	margin-top: 20px;
 	padding: 15px;
-	width: 10%;
+	width: 100%;
 }
 
-/*
-.student {
-	padding: 10px;
-	border: 1px solid;
+.login-button {
+	border: 1px solid rgb(203, 223, 189);
+	margin-top: 10px;
+	margin-right: 10px;
+	float: right;
 }
-*/
 
 nav ul {
 	margin: 0;
@@ -124,7 +123,8 @@ div a:link, div a:visited {
 }
 
 ul li a, footer a {
-	padding: 16px 32px;
+	padding: 21px 32px;
+	vertical-align: middle;
 }
 
 ul li a:hover, footer a:hover {
@@ -146,6 +146,16 @@ ul li a:hover, footer a:hover {
 	margin-bottom: 25px;
 }
 
+.cup {
+	background-image: url("images/red solo cup.png");
+	background-size: 64px;
+	display: inline-block;
+	text-indent: -999999px;
+	margin: 10px 10px;
+	width: 64px;
+}
+
+
 /* contacts */
 
 .socials {
@@ -156,10 +166,7 @@ ul li a:hover, footer a:hover {
 }
 
 .socials figure {
-	height: 150%;
-	background: white;
 	margin: auto;
-	border-radius: 50%;
 }
 
 .socials figure img {
