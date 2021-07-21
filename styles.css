@@ -22,13 +22,9 @@ h2 {
 	margin-bottom: 5px;
 }
 
-p {
-	margin: 10px 0;
-}
+p {margin: 10px 0;}
 
-header {
-	font-size: 20px;
-}
+header {font-size: 20px;}
 
 section {
 	color: rgb(164, 74, 63);
@@ -52,9 +48,51 @@ div {
 	width: 40%;
 }
 
-.container {
-	width: 70%;
+/* bracket stuff */
+
+.bracket {
+	display: flex;
+	flex-direction: row;
+	padding: 10px;
+	line-height: 1.4em;
 }
+
+.round {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 200px;
+	list-style: none;
+	padding: 0;
+}
+
+.round .spacer, .round .game-spacer {flex-grow: 1;}
+.round .spacer:first-child, .round .spacer:last-child{flex-grow: .5;}
+
+li.game{
+  padding-left:20px;
+}
+
+li.game.winner{
+  font-weight:bold;
+}
+li.game span{
+  float:right;
+  margin-right:5px;
+}
+
+li.game-top{ border-bottom:1px solid #aaa; }
+
+li.game-spacer{ 
+  border-right:1px solid #aaa;
+  min-height:40px;
+}
+
+li.game-bottom{ 
+  border-top:1px solid #aaa;
+}
+
+.container {width: 70%;}
 
 button, input[type="button"] {
 	background-color: rgb(164, 74, 63);
@@ -95,17 +133,13 @@ a {
 	display: inline-block;
 }
 
-a:hover {
-	text-decoration: underline;
-}
+a:hover {text-decoration: underline;}
 
 header a:link, header a:visited, footer a:link, footer a:visited {
 	color:  rgb(203, 223, 189);
 }
 
-div a:link, div a:visited {
-	color: rgb(164, 74, 63);
-}
+div a:link, div a:visited {color: rgb(164, 74, 63);}
 
 ul li a, footer a {
 	padding: 21px 32px;
@@ -150,9 +184,7 @@ ul li a:hover, footer a:hover {
 	flex-direction: row;
 }
 
-.socials figure {
-	margin: auto;
-}
+.socials figure {margin: auto;}
 
 .socials figure img {
 	position: relative;
