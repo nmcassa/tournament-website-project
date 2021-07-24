@@ -61,6 +61,11 @@ function matchGet(button) {
 	var y = num + z;
 
 	var next = document.getElementById(y.toString());
-
-	next.innerHTML = winner;
+	var nextRound = z +10;
+	
+	if (document.getElementById(nextRound.toString()) == null){
+		next.innerHTML = winner.substring(0, winner.indexOf('<'));
+	} else {
+		next.innerHTML = winner;
+	}
 }
