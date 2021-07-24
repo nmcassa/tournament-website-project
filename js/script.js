@@ -35,3 +35,32 @@ function tournyType() {
 		sum.innerHTML = tournamentType;
 	}
 }
+
+var winner;
+
+function matchGet(button) {
+	//gets us game id in x location
+	var x = button.id;
+	var xI = parseInt(x);
+
+	winner = document.getElementById(x).parentElement.parentElement.innerHTML;
+	//winner = winner.substring(0, winner.indexOf('<'));
+
+	//z gets us the round number in x0 location
+	var z = button.parentNode.parentNode.id;
+	z = parseInt(z);
+	z = parseInt(z / 10) * 10 + 10;
+
+	//depending on the round we have to divide by a different value
+	if (z == 20){
+		var num = parseInt((xI-1) /2);
+	} else if (z == 30) {
+		var num = parseInt((xI-1) /4);
+	}
+	
+	var y = num + z;
+
+	var next = document.getElementById(y.toString());
+
+	next.innerHTML = winner;
+}
