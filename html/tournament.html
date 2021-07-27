@@ -6,7 +6,7 @@
 		<script src="../js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="..\styles.css">
 	</head>
-	<body>
+	<body onload="setPlayers()">
 		<header>
 			<nav>
 				<ul>
@@ -22,21 +22,21 @@
 			<ul class="round roundOne">
 				<li class="spacer">&nbsp;</li>
 
-				<li class="game game-top" id="10">One<span>
+				<li class="game game-top" id="10"><span>
 					<input class="winner-button" type="button" onclick="matchGet(this)" value="Winner" id="1">
 				</span></li>
 				<li class="game game-spacer">&nbsp;</li>
-				<li class="game game-bottom" id="11">Two<span>
+				<li class="game game-bottom" id="11"><span>
 					<input class="winner-button" type="button" onclick="matchGet(this)" value="Winner" id="2">
 				</span></li>
 
 				<li class="spacer">&nbsp;</li>
 
-				<li class="game game-top" id="12">Three<span>
+				<li class="game game-top" id="12"><span>
 					<input class="winner-button" type="button" onclick="matchGet(this)" value="Winner" id="3">
 				</span></li>
 				<li class="game game-spacer">&nbsp;</li>
-				<li class="game game-bottom" id="13">Four<span>
+				<li class="game game-bottom" id="13"><span>
 					<input class="winner-button" type="button" onclick="matchGet(this)" value="Winner" id="4">
 				</span></li>
 

@@ -17,6 +17,8 @@ function singDbls() {
 	}
 }
 
+var players = ["One", "Two", "Dick", "Stupid", "Five"];
+
 function tournyType() {
 	var elem = document.getElementById("tournyTypeB");
 	var sum = document.getElementById("sum2");
@@ -37,6 +39,18 @@ function tournyType() {
 }
 
 var winner;
+
+function setPlayers() {
+	var give;
+	for(let i = 0; i < players.length; i++) {
+		var j = i+10;
+		var x = document.getElementById(j.toString())
+		give = x.innerHTML;
+		if (x != null) {
+			x.innerHTML = players[i] + give;
+		}
+	}
+}
 
 function matchGet(button) {
 	//gets us game id in x location
