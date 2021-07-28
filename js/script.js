@@ -1,5 +1,15 @@
 var singlesDoubles = "Singles";
 var tournamentType = "Bracket";
+var players = ["One", "Two", "Dumb", "Stupid", "Five"];
+var playerNum;
+var winner;
+myStorage = window.sessionStorage;
+
+function getPlayerNum(){
+	var e = document.getElementById("dropDownPlayers");
+ 	playerNum = e.options[e.selectedIndex].text;
+	document.getElementById("sum3").innerHTML = playerNum;
+}
 
 function singDbls() {
 	var elem = document.getElementById("singDblsB");
@@ -16,8 +26,6 @@ function singDbls() {
 		sum.innerHTML = singlesDoubles;
 	}
 }
-
-var players = ["One", "Two", "Dick", "Stupid", "Five"];
 
 function tournyType() {
 	var elem = document.getElementById("tournyTypeB");
@@ -38,13 +46,31 @@ function tournyType() {
 	}
 }
 
-var winner;
+function passwordCheck() {
+	var pass = document.getElementById("pwd").value;
+
+	if (pass == "coolpassword") {
+		sessionStorage.setItem(0, "Nick");
+		sessionStorage.setItem(1, "Dillon");
+		sessionStorage.setItem(2, "Justin");
+		sessionStorage.setItem(3, "Luke");
+		window.location.href = "../html/tournament.html";
+	}
+}
 
 function setPlayers() {
+	//to set players from the create page
+	if (sessionStorage.length != 0) {
+		for (let i = 0; i < sessionStorage.length; i++) {
+			players[i] = sessionStorage.getItem(i);
+		}
+	}
+
 	var give;
 	for(let i = 0; i < players.length; i++) {
 		var j = i+10;
-		var x = document.getElementById(j.toString())
+		var x = document.getElementById(j.toString());
+		//give is just the html for the span and the button so i add that to each player
 		give = x.innerHTML;
 		if (x != null) {
 			x.innerHTML = players[i] + give;

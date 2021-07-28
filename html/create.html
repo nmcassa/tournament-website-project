@@ -23,17 +23,37 @@
 				<input onclick="singDbls()" type="button" value="Singles" id="singDblsB"></input>
 				<p id="demo"></p>
 				<input onclick="tournyType()" type="button" value="Bracket" id="tournyTypeB"></input>
+				<br></br>
+				<select onchange="getPlayerNum()" id="dropDownPlayers">
+					<optgroup label="Bracket Style">
+						<option selected="selected">4</option>
+						<option>8</option>
+					</optgroup>
+					<optgroup label="Group Stage Style">
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</optgroup>
+				</select>
 			</div>
 			<div>
 				<h2>Game Summary:</h2>
 				<p id="sum1">Singles</p>
 				<p id="sum2">Bracket</p>
+				<p id="sum3">4</p>
 			</div>
+		</section>
+		<section>
+			<div><input onclick="create()" type="button" value="Create!"></div>
 		</section>
 		<div>
 			Pass: 
 			<input type="password" id="pwd" name="pwd">
-			<button class="small-button">Start</button>
+			<button onclick="passwordCheck()" class="small-button">Start</button>
 		</div>
 		<footer><a href="contact.html">Contact</a></footer>
 	</body>
