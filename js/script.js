@@ -1,14 +1,32 @@
 var singlesDoubles = "Singles";
 var tournamentType = "Bracket";
 var players = ["One", "Two", "Dumb", "Stupid", "Five"];
-var playerNum;
+var playerNum = 0;
 var winner;
 myStorage = window.sessionStorage;
 
 function getPlayerNum(){
+	//get player num and put it in sum
 	var e = document.getElementById("dropDownPlayers");
  	playerNum = e.options[e.selectedIndex].text;
 	document.getElementById("sum3").innerHTML = playerNum;
+
+	var myDiv = document.getElementById("myDiv");
+
+	//remove other textboxes
+	while (myDiv.hasChildNodes()) {
+		myDiv.removeChild(myDiv.firstChild);
+	}
+
+	//set up all of the text boxes under players in create tab
+	for (let i = 0; i < playerNum; i++) {
+		var textInput = document.createElement("input");
+		textInput.type = "text";
+		//implement something that gives all textInputs an id according to  
+		//i so that you can do the sessionStorage thing
+		//or find a way to do sessionStorage 1 by 1
+		myDiv.append(textInput);
+	}
 }
 
 function singDbls() {
@@ -49,11 +67,17 @@ function tournyType() {
 function passwordCheck() {
 	var pass = document.getElementById("pwd").value;
 
-	if (pass == "coolpassword") {
+	if (pass == "cock") {
 		sessionStorage.setItem(0, "Nick");
 		sessionStorage.setItem(1, "Dillon");
 		sessionStorage.setItem(2, "Justin");
 		sessionStorage.setItem(3, "Luke");
+		window.location.href = "../html/tournament.html";
+	}
+}
+
+function create() {
+	if (tournamentType == "Bracket") {
 		window.location.href = "../html/tournament.html";
 	}
 }
@@ -102,7 +126,7 @@ function matchGet(button) {
 
 	var next = document.getElementById(y.toString());
 	var nextRound = z +10;
-	
+
 	if (document.getElementById(nextRound.toString()) == null){
 		next.innerHTML = winner.substring(0, winner.indexOf('<'));
 	} else {

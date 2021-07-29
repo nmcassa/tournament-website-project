@@ -48,6 +48,11 @@ div {
 	width: 40%;
 }
 
+input[type="text"] {
+	width: 75px;
+	margin: 5px;
+}
+
 /* bracket stuff */
 
 .bracket {
