@@ -53,6 +53,11 @@ input[type="text"] {
 	margin: 5px;
 }
 
+#error {
+	font-size: 15px;
+	color: darkolivegreen;
+}
+
 /* bracket stuff */
 
 .bracket {
@@ -112,11 +117,11 @@ button:hover, input[type="button"]:hover {
 	padding: 11px 21px;
 }
 
-.small-button {
+button.small-button, input[type="button"].small-button {
 	padding: 5px 10px;
 }
 
-.small-button:hover {
+button.small-button:hover, input[type="button"].small-button {
 	padding: 6px 11px;
 }
 

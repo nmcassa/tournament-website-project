@@ -1,6 +1,6 @@
 var singlesDoubles = "Singles";
 var tournamentType = "Bracket";
-var players = ["One", "Two", "Dumb", "Stupid", "Five"];
+var players = [];
 var playerNum = 0;
 var winner;
 myStorage = window.sessionStorage;
@@ -10,23 +10,39 @@ function getPlayerNum(){
 	var e = document.getElementById("dropDownPlayers");
  	playerNum = e.options[e.selectedIndex].text;
 	document.getElementById("sum3").innerHTML = playerNum;
+}
 
-	var myDiv = document.getElementById("myDiv");
-
-	//remove other textboxes
-	while (myDiv.hasChildNodes()) {
-		myDiv.removeChild(myDiv.firstChild);
+function addPlayer() {
+	//add a second player input for doubles
+	var player = document.getElementById("addPlayerInput").value;
+	if (!validPlayer(player)) {
+		document.getElementById("error").innerHTML = "Invalid player name";
+		return;
 	}
 
-	//set up all of the text boxes under players in create tab
-	for (let i = 0; i < playerNum; i++) {
-		var textInput = document.createElement("input");
-		textInput.type = "text";
-		//implement something that gives all textInputs an id according to  
-		//i so that you can do the sessionStorage thing
-		//or find a way to do sessionStorage 1 by 1
-		myDiv.append(textInput);
+	players.push(player);
+
+	document.getElementById("sum4").innerHTML = players;
+}
+
+function validPlayer(player) {
+	if (player.length == 0) {
+		return false;
 	}
+	for (let i = 0; i < player.length; i++) {
+		if (player.charAt(i) == ' ') {
+			return false;
+		}
+	}
+	return true;
+}
+
+//this is a dumb solution to the problem:
+//each time you created a tournament then went back to the 
+//create tab to create a new one, the players from the last 
+//tournament were still in sessionStorage so I guess we just clear them here
+function createLoad() {
+	sessionStorage.clear();
 }
 
 function singDbls() {
@@ -77,6 +93,10 @@ function passwordCheck() {
 }
 
 function create() {
+	for (let i = 0; i < players.length; i++) {
+		sessionStorage.setItem(i, players[i]);
+	}
+
 	if (tournamentType == "Bracket") {
 		window.location.href = "../html/tournament.html";
 	}

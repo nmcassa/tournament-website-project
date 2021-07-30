@@ -7,7 +7,7 @@
 		<script src="../js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="..\styles.css">
 	</head>
-	<body>
+	<body onload="createLoad()">
 		<header>
 			<nav>
 				<ul>
@@ -43,13 +43,16 @@
 				</select>
 				<br></br>
 				Players:
-				<div id="myDiv"></div>
+				<input type="text" maxlength="12" id="addPlayerInput">
+				<input type="button" class="small-button" value="Add" onclick="addPlayer()">
+				<p id="error"></p>
 			</div>
 			<div>
 				<h2>Game Summary:</h2>
 				<p id="sum1">Singles</p>
 				<p id="sum2">Bracket</p>
 				<p id="sum3">4</p>
+				<p id="sum4">No players yet</p>
 			</div>
 		</section>
 		<section>
