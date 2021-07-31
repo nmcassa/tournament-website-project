@@ -1,7 +1,7 @@
 var singlesDoubles = "Singles";
 var tournamentType = "Bracket";
 var players = [];
-var playerNum = 0;
+var playerNum = -1;
 var winner;
 myStorage = window.sessionStorage;
 
@@ -9,7 +9,16 @@ function getPlayerNum(){
 	//get player num and put it in sum
 	var e = document.getElementById("dropDownPlayers");
  	playerNum = e.options[e.selectedIndex].text;
+
+ 	//if a number like 5 or 6 is chosen an error message will be shown bc that will
+ 	//not go in the bracket and is not a valid bracket playerNum
+ 	if ((playerNum != 4 && playerNum != 8) && (tournamentType == "Bracket")) {
+ 		document.getElementById("error").innerHTML = "Wrong tournament type";
+ 		return;
+ 	}
+
 	document.getElementById("sum3").innerHTML = playerNum;
+	document.getElementById("error").innerHTML = "";
 }
 
 function addPlayer() {
@@ -20,9 +29,22 @@ function addPlayer() {
 		return;
 	}
 
+	if (playerNum == -1) {
+		document.getElementById("error").innerHTML = "Choose amount of players";
+		return;
+	}
+
+	if (players.length == playerNum) {
+		document.getElementById("error").innerHTML = "Max players";
+		return;
+	}
+
 	players.push(player);
 
 	document.getElementById("sum4").innerHTML = players;
+
+	document.getElementById("addPlayerInput").value = "";
+	document.getElementById("error").innerHTML = "";
 }
 
 function validPlayer(player) {
@@ -93,6 +115,11 @@ function passwordCheck() {
 }
 
 function create() {
+	if (players.length != playerNum) {
+		document.getElementById("error").innerHTML = "Not enough players!";
+		return;
+	}
+
 	for (let i = 0; i < players.length; i++) {
 		sessionStorage.setItem(i, players[i]);
 	}
@@ -149,7 +176,17 @@ function matchGet(button) {
 
 	if (document.getElementById(nextRound.toString()) == null){
 		next.innerHTML = winner.substring(0, winner.indexOf('<'));
+		finish.hidden = false;
+		sessionStorage.setItem(10, next.innerHTML);
 	} else {
 		next.innerHTML = winner;
 	}
+}
+
+function showWinScreen() {
+	window.location.href="../html/winnerScreen.html";
+}
+
+function winLoad() {
+	document.getElementById("winner").innerHTML = sessionStorage.getItem(10);
 }
