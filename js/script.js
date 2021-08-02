@@ -23,7 +23,14 @@ function getPlayerNum(){
 
 function addPlayer() {
 	//add a second player input for doubles
-	var player = document.getElementById("addPlayerInput").value;
+	if (singlesDoubles == "Singles") {
+		var player = document.getElementById("addPlayerInput").value;
+	} else {
+		var player = document.getElementById("addPlayerInput").value + "/" + 
+			document.getElementById("addPlayerInput2").value;
+	}
+	
+
 	if (!validPlayer(player)) {
 		document.getElementById("error").innerHTML = "Invalid player name";
 		return;
@@ -41,28 +48,37 @@ function addPlayer() {
 
 	players.push(player);
 
-	document.getElementById("sum4").innerHTML = players;
+	document.getElementById("sum4").innerHTML = arrToString(players);
 
 	document.getElementById("addPlayerInput").value = "";
+	if (singlesDoubles == "Doubles") {
+		document.getElementById("addPlayerInput2").value = "";
+	}
 	document.getElementById("error").innerHTML = "";
 }
 
 function validPlayer(player) {
+	if (singlesDoubles == "Doubles") {
+		if (document.getElementById("addPlayerInput").value == "" || document.getElementById("addPlayerInput2").value == "") {
+			return false;
+		}
+	}
+
 	if (player.length == 0) {
 		return false;
 	}
+
 	for (let i = 0; i < player.length; i++) {
 		if (player.charAt(i) == ' ') {
 			return false;
 		}
 	}
+
 	return true;
 }
 
-//this is a dumb solution to the problem:
-//each time you created a tournament then went back to the 
-//create tab to create a new one, the players from the last 
-//tournament were still in sessionStorage so I guess we just clear them here
+//this is a dumb solution, each time you created a tournament then went back to the create
+//tab to create a new one, the players from the last tournament were still in sessionStorage
 function createLoad() {
 	sessionStorage.clear();
 }
@@ -75,12 +91,22 @@ function singDbls() {
 		elem.value = "Doubles";
 		singlesDoubles = "Doubles";
 		sum.innerHTML = singlesDoubles;
+		document.getElementById("addPlayerInput2").hidden = false;
+		clearArraySum(players);
 	} 
 	else {
 		elem.value = "Singles";
 		singlesDoubles = "Singles";
 		sum.innerHTML = singlesDoubles;
+		document.getElementById("addPlayerInput2").hidden = true;
+		clearArraySum(players);
 	}
+}
+
+//just for on the create page
+function clearArraySum(arr) {
+	arr.length = 0;
+	document.getElementById("sum4").innerHTML = "No players yet";
 }
 
 function tournyType() {
@@ -137,6 +163,8 @@ function setPlayers() {
 		}
 	}
 
+	players = randomize(players);
+
 	var give;
 	for(let i = 0; i < players.length; i++) {
 		var j = i+10;
@@ -147,6 +175,18 @@ function setPlayers() {
 			x.innerHTML = players[i] + give;
 		}
 	}
+}
+
+function randomize(arr) {
+	var temp;
+	for (let i = 0; i < 20; i++) {
+		let num1 = Math.floor(Math.random() * arr.length); //gives random number 0 - arr.length
+		let num2 = Math.floor(Math.random() * arr.length);
+		temp = arr[num1];
+		arr[num1] = arr[num2];
+		arr[num2] = temp;
+	}
+	return arr;
 }
 
 function matchGet(button) {
@@ -189,4 +229,16 @@ function showWinScreen() {
 
 function winLoad() {
 	document.getElementById("winner").innerHTML = sessionStorage.getItem(10);
+}
+
+function arrToString(arr) {
+	var str = "";
+	for (let i = 0; i < arr.length; i++) {
+		if (i == arr.length-1) {
+			str = str + arr[i];
+		} else {
+			str = str + arr[i] + ", ";
+		}
+	}
+	return str;
 }

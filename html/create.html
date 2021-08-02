@@ -13,7 +13,7 @@
 				<ul>
 					<li class="cup"><a href="index.html">Cup</a></li>
 					<li><a href="../index.html">Home</a></li>
-					<li><a href="leaderboard.html">Leaderboard</a></li>
+					<li><a href="leaderboard.html">Local Stats</a></li>
 					<li><a href="create.html">Create</a></li>
 				</ul>
 			</nav>
@@ -43,9 +43,13 @@
 				</select>
 				<br></br>
 				Players:
-				<input type="text" maxlength="12" id="addPlayerInput">
-				<input type="button" class="small-button" value="Add" onclick="addPlayer()">
-				<p id="error"></p>
+				<div id="playersDiv">
+					<input type="text" maxlength="12" id="addPlayerInput">
+					<input type="text" maxlength="12" hidden id="addPlayerInput2">
+					<br></br>
+					<input id="addPlayer" type="button" class="small-button" value="Add" onclick="addPlayer()">
+					<p id="error"></p>
+				</div>
 			</div>
 			<div>
 				<h2>Game Summary:</h2>

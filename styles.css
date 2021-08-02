@@ -22,9 +22,19 @@ h2 {
 	margin-bottom: 5px;
 }
 
-p {margin: 10px 0;}
+h3 {
+	font-size: 42px;
+	text-align: center;
+}
 
-header {font-size: 20px;}
+p {
+	margin: 10px 0;
+	word-wrap: break-word;
+}
+
+header {
+	font-size: 20px;
+}
 
 section {
 	color: rgb(164, 74, 63);
@@ -76,8 +86,13 @@ input[type="text"] {
 	padding: 0;
 }
 
-.round .spacer, .round .game-spacer {flex-grow: 1;}
-.round .spacer:first-child, .round .spacer:last-child{flex-grow: .5;}
+.round .spacer, .round .game-spacer {
+	flex-grow: 1;
+}
+
+.round .spacer:first-child, .round .spacer:last-child{
+	flex-grow: .5;
+}
 
 li.game{
   padding-left:20px;
@@ -88,7 +103,9 @@ li.game span{
   margin-right:5px;
 }
 
-li.game-top{ border-bottom:1px solid #aaa; }
+li.game-top { 
+	border-bottom:1px solid #aaa;
+}
 
 li.game-spacer{ 
   border-right:1px solid #aaa;
@@ -110,11 +127,17 @@ button, input[type="button"] {
 	margin: 0px 0;
 	cursor: pointer;
 	opacity: 0.9;
+	-webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 button:hover, input[type="button"]:hover {
 	opacity: 1;
 	padding: 11px 21px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 }
 
 button.small-button, input[type="button"].small-button {
@@ -154,7 +177,9 @@ a {
 	display: inline-block;
 }
 
-a:hover {text-decoration: underline;}
+a:hover {
+	text-decoration: underline;
+}
 
 header a:link, header a:visited, footer a:link, footer a:visited {
 	color:  rgb(203, 223, 189);
@@ -205,7 +230,9 @@ ul li a:hover, footer a:hover {
 	flex-direction: row;
 }
 
-.socials figure {margin: auto;}
+.socials figure {
+	margin: auto;
+}
 
 .socials figure img {
 	position: relative;
