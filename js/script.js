@@ -150,8 +150,10 @@ function create() {
 		sessionStorage.setItem(i, players[i]);
 	}
 
-	if (tournamentType == "Bracket") {
+	if (tournamentType == "Bracket" && playerNum == 4) {
 		window.location.href = "../html/tournament.html";
+	} else if (tournamentType == "Bracket" && playerNum == 8) {
+		window.location.href = "../html/tournament8.html";
 	}
 }
 
@@ -207,6 +209,8 @@ function matchGet(button) {
 		var num = parseInt((xI-1) /2);
 	} else if (z == 30) {
 		var num = parseInt((xI-1) /4);
+	} else if (z == 40) {
+		var num = parseInt((xI-1) /8);
 	}
 	
 	var y = num + z;
