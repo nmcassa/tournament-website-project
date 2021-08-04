@@ -154,6 +154,8 @@ function create() {
 		window.location.href = "../html/tournament.html";
 	} else if (tournamentType == "Bracket" && playerNum == 8) {
 		window.location.href = "../html/tournament8.html";
+	} else if (tournamentType != "Bracket") {
+		window.location.href = "../html/groupStage.html";
 	}
 }
 
@@ -179,14 +181,46 @@ function setPlayers() {
 	}
 }
 
+function setPlayersGroup() {
+	//to set players from the create page
+	if (sessionStorage.length != 0) {
+		for (let i = 0; i < sessionStorage.length; i++) {
+			players[i] = sessionStorage.getItem(i);
+		}
+	}
+
+	players = randomize(players);
+
+	for (let i = 0; i < players.length; i++) {
+		var groupStageRow = document.createElement("tr");
+		var groupStagePlayer = document.createElement("td");
+		var groupStageWins = document.createElement("td");
+		var groupStageLosses = document.createElement("td");
+
+		groupStagePlayer.innerHTML = players[i];
+		groupStageWins.innerHTML = 0;
+		groupStageLosses.innerHTML = 0;
+
+		groupStageRow.append(groupStagePlayer);
+		groupStageRow.append(groupStageWins);
+		groupStageRow.append(groupStageLosses);
+		groupTable.append(groupStageRow);
+	}
+}
+
+function swap(arr, one, two) {
+	var temp;
+	temp = arr[one];
+	arr[one] = arr[two];
+	arr[two] = temp;
+}
+
 function randomize(arr) {
 	var temp;
 	for (let i = 0; i < 20; i++) {
 		let num1 = Math.floor(Math.random() * arr.length); //gives random number 0 - arr.length
 		let num2 = Math.floor(Math.random() * arr.length);
-		temp = arr[num1];
-		arr[num1] = arr[num2];
-		arr[num2] = temp;
+		swap(arr, num1, num2);
 	}
 	return arr;
 }

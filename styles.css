@@ -116,7 +116,30 @@ li.game-bottom{
   border-top:1px solid #aaa;
 }
 
-.container {width: 70%;}
+.container {
+	width: 70%;
+}
+
+/* group stage stuff */
+#groupTable {
+	width: 30%;
+	background-color: rgb(164, 74, 63);
+	color: rgb(203, 223, 189);
+}
+
+table, th, td {
+  border: 1px solid rgb(203, 223, 189);
+  border-collapse: collapse;
+}
+
+table tr td:first-child {
+	width: 60%;
+}
+
+th, td {
+	padding: 4px 10px;
+	text-align: left;
+}
 
 /* buttons */
 
