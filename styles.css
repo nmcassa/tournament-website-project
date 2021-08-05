@@ -122,6 +122,8 @@ li.game-bottom{
 
 /* group stage stuff */
 #groupTable {
+	margin-left: auto;
+	margin-right: auto;
 	width: 30%;
 	background-color: rgb(164, 74, 63);
 	color: rgb(203, 223, 189);
@@ -139,6 +141,15 @@ table tr td:first-child {
 th, td {
 	padding: 4px 10px;
 	text-align: left;
+}
+
+#matches {
+	width: 90%;
+}
+
+#matches > div {
+	display: inline-block;
+	width: 20%;
 }
 
 /* buttons */

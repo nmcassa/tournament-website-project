@@ -198,21 +198,82 @@ function setPlayersGroup() {
 		var groupStageLosses = document.createElement("td");
 
 		groupStagePlayer.innerHTML = players[i];
+		groupStagePlayer.id = "" + players[i];
+
 		groupStageWins.innerHTML = 0;
+		groupStageWins.id = players[i] + "Wins";
+
 		groupStageLosses.innerHTML = 0;
+		groupStageLosses.id = players[i] + "Losses";
 
 		groupStageRow.append(groupStagePlayer);
 		groupStageRow.append(groupStageWins);
 		groupStageRow.append(groupStageLosses);
 		groupTable.append(groupStageRow);
 	}
+
+	for (let i = 0; i < players.length-1; i++) {
+		for (let j = i + 1; j < players.length; j++) {
+			if ((i + j) % 2 == 0) {
+				var playerOne = players[i];
+				var playerTwo = players[j];
+			} else {
+				var playerOne = players[j];
+				var playerTwo = players[i];
+			}
+			generateMatch(playerOne, playerTwo);
+		}
+	}
 }
 
-function swap(arr, one, two) {
+function groupMatchOutcome(button) {
+	var winner = button.value;
+
+	//increment wins by one on the table
+	winningId = winner + "Wins";
+	numOfWins = parseInt(document.getElementById(winningId).innerHTML);
+	numOfWins = numOfWins + 1;
+	document.getElementById(winningId).innerHTML = numOfWins;
+
+	var x = button.parentElement.remove();
+}
+
+function generateMatch(playerOne, playerTwo) {
+	var match = document.createElement("div");
+	var firstPlayer = document.createElement("input");
+	var secondPlayer = document.createElement("input");
+	var vs = document.createElement("p");
+
+	vs.append("  vs.  ");
+
+	firstPlayer.type = "button";
+	firstPlayer.value = playerOne;
+	firstPlayer.classList.add("small-button");
+	firstPlayer.onclick = function() {groupMatchOutcome(this)};
+
+	secondPlayer.type = "button";
+	secondPlayer.value = playerTwo;
+	secondPlayer.classList.add("small-button");
+	secondPlayer.onclick = function() {groupMatchOutcome(this)};
+
+	match.append(firstPlayer);
+	match.append(vs);
+	match.append(secondPlayer);
+	matches.append(match);
+}
+
+function swapA(arr, one, two) {
 	var temp;
 	temp = arr[one];
 	arr[one] = arr[two];
 	arr[two] = temp;
+}
+
+function swap(one, two) {
+	var temp;
+	temp = one;
+	one = two;
+	two = temp;
 }
 
 function randomize(arr) {
@@ -220,7 +281,7 @@ function randomize(arr) {
 	for (let i = 0; i < 20; i++) {
 		let num1 = Math.floor(Math.random() * arr.length); //gives random number 0 - arr.length
 		let num2 = Math.floor(Math.random() * arr.length);
-		swap(arr, num1, num2);
+		swapA(arr, num1, num2);
 	}
 	return arr;
 }
