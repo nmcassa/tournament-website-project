@@ -228,14 +228,70 @@ function setPlayersGroup() {
 
 function groupMatchOutcome(button) {
 	var winner = button.value;
+	var loser;
+
+	//get an array of the elements in the table row
+	var c = button.parentElement.childNodes
+
+	//figure out the loser
+	if (c[0].value == winner) {
+		loser = c[2].value;
+	} else {
+		loser = c[0].value;
+	}
 
 	//increment wins by one on the table
-	winningId = winner + "Wins";
-	numOfWins = parseInt(document.getElementById(winningId).innerHTML);
+	var winningId = winner + "Wins";
+	var numOfWins = parseInt(document.getElementById(winningId).innerHTML);
 	numOfWins = numOfWins + 1;
 	document.getElementById(winningId).innerHTML = numOfWins;
 
+	//increment losses by one on the table
+	var loserId = loser + "Losses";
+	var numOfLosses = parseInt(document.getElementById(loserId).innerHTML);
+	numOfLosses = numOfLosses + 1;
+	document.getElementById(loserId).innerHTML = numOfLosses;
+
+	//get rid of the match div
 	var x = button.parentElement.remove();
+
+	sortTable();
+}
+
+//from w3schools.com/howto/howto_js_sort_table.asp
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("groupTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      //check if the two rows should switch place:
+      if (Number(x.innerHTML) < Number(y.innerHTML)) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
 }
 
 function generateMatch(playerOne, playerTwo) {
@@ -248,12 +304,12 @@ function generateMatch(playerOne, playerTwo) {
 
 	firstPlayer.type = "button";
 	firstPlayer.value = playerOne;
-	firstPlayer.classList.add("small-button");
+	firstPlayer.classList.add("small-button", "top");
 	firstPlayer.onclick = function() {groupMatchOutcome(this)};
 
 	secondPlayer.type = "button";
 	secondPlayer.value = playerTwo;
-	secondPlayer.classList.add("small-button");
+	secondPlayer.classList.add("small-button", "bottom");
 	secondPlayer.onclick = function() {groupMatchOutcome(this)};
 
 	match.append(firstPlayer);
