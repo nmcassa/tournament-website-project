@@ -4,7 +4,6 @@ var players = [];
 var playerNum = -1;
 var winner;
 myStorage = window.sessionStorage;
-sessionStorage.setItem("tournamentType", tournamentType);
 
 function getPlayerNum(){
 	//get player num and put it in sum
@@ -76,6 +75,12 @@ function validPlayer(player) {
 		}
 	}
 
+	for (let i = 0; i < players.length; i++) {
+		if (players[i] == player) {
+			return false;
+		}
+	}
+
 	return true;
 }
 
@@ -83,6 +88,7 @@ function validPlayer(player) {
 //tab to create a new one, the players from the last tournament were still in sessionStorage
 function createLoad() {
 	sessionStorage.clear();
+	sessionStorage.setItem("tournamentType", tournamentType);
 }
 
 function singDbls() {
@@ -132,9 +138,9 @@ function passwordCheck() {
 		sessionStorage.setItem(1, "Dillon");
 		sessionStorage.setItem(2, "Justin");
 		sessionStorage.setItem(3, "Luke");
-		sessionStorage.setItem("tournamentType", "Bracket");
+		sessionStorage.setItem("tournamentType", "Group => Bracket");
 		sessionStorage.setItem("numOfPlayers", "4");
-		window.location.href = "../html/tournament.html";
+		window.location.href = "../html/groupStage.html";
 	}
 }
 
@@ -159,14 +165,19 @@ function create() {
 
 function setPlayers() {
 	//to set players from the create page
-	if (sessionStorage.length != 0) {
-		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
-			players[i] = sessionStorage.getItem(i);
-		}
+	for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
+		players[i] = sessionStorage.getItem(i);
 	}
 
-	players = randomize(players);
 
+	if (sessionStorage.getItem("tournamentType") == "Bracket"){
+		players = randomize(players);
+	} else {
+		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
+			players[i] = (i+1) + ". " + players[i];
+		}
+	}
+	
 	var give;
 	for(let i = 0; i < players.length; i++) {
 		var j = i+10;
@@ -181,10 +192,8 @@ function setPlayers() {
 
 function setPlayersGroup() {
 	//to set players from the create page
-	if (sessionStorage.length != 0) {
-		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
-			players[i] = sessionStorage.getItem(i);
-		}
+	for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
+		players[i] = sessionStorage.getItem(i);
 	}
 	
 	//change the finish button's onclick function
@@ -423,7 +432,7 @@ function showWinScreen() {
 function getNewBracketFromGroups(){
 	var table = document.getElementById("groupTable");
 
-	for (let i = 1; i < table.rows.length - 1; i++) {
+	for (let i = 1; i < table.rows.length; i++) {
 		sessionStorage.setItem(i-1, table.rows[i].getElementsByTagName("TD")[0].innerHTML);
 	}
 
