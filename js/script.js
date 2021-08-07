@@ -4,6 +4,7 @@ var players = [];
 var playerNum = -1;
 var winner;
 myStorage = window.sessionStorage;
+sessionStorage.setItem("tournamentType", tournamentType);
 
 function getPlayerNum(){
 	//get player num and put it in sum
@@ -17,6 +18,7 @@ function getPlayerNum(){
  		return;
  	}
 
+ 	sessionStorage.setItem("numOfPlayers", playerNum.toString());
 	document.getElementById("sum3").innerHTML = playerNum;
 	document.getElementById("error").innerHTML = "";
 }
@@ -89,18 +91,15 @@ function singDbls() {
 	
 	if (elem.value == "Singles") {
 		elem.value = "Doubles";
-		singlesDoubles = "Doubles";
-		sum.innerHTML = singlesDoubles;
 		document.getElementById("addPlayerInput2").hidden = false;
-		clearArraySum(players);
-	} 
-	else {
+	} else {
 		elem.value = "Singles";
-		singlesDoubles = "Singles";
-		sum.innerHTML = singlesDoubles;
 		document.getElementById("addPlayerInput2").hidden = true;
-		clearArraySum(players);
 	}
+
+	singlesDoubles = elem.value;
+	sum.innerHTML = singlesDoubles;
+	clearArraySum(players);
 }
 
 //just for on the create page
@@ -115,17 +114,14 @@ function tournyType() {
 
 	if (elem.value == "Bracket") {
 		elem.value = "Round Robin";
-		tournamentType = "Round Robin";
-		sum.innerHTML = tournamentType;
 	} else if (elem.value == "Round Robin") {
 		elem.value = "Group => Bracket";
-		tournamentType = "Group => Bracket";
-		sum.innerHTML = tournamentType;
 	} else {
-		elem.value = "Bracket";
-		tournamentType = "Bracket";
-		sum.innerHTML = tournamentType;
-	}
+		elem.value = "Bracket";	}
+
+	tournamentType = elem.value;
+	sum.innerHTML = tournamentType;
+	sessionStorage.setItem("tournamentType", tournamentType);
 }
 
 function passwordCheck() {
@@ -136,6 +132,8 @@ function passwordCheck() {
 		sessionStorage.setItem(1, "Dillon");
 		sessionStorage.setItem(2, "Justin");
 		sessionStorage.setItem(3, "Luke");
+		sessionStorage.setItem("tournamentType", "Bracket");
+		sessionStorage.setItem("numOfPlayers", "4");
 		window.location.href = "../html/tournament.html";
 	}
 }
@@ -162,7 +160,7 @@ function create() {
 function setPlayers() {
 	//to set players from the create page
 	if (sessionStorage.length != 0) {
-		for (let i = 0; i < sessionStorage.length; i++) {
+		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
 			players[i] = sessionStorage.getItem(i);
 		}
 	}
@@ -184,9 +182,14 @@ function setPlayers() {
 function setPlayersGroup() {
 	//to set players from the create page
 	if (sessionStorage.length != 0) {
-		for (let i = 0; i < sessionStorage.length; i++) {
+		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
 			players[i] = sessionStorage.getItem(i);
 		}
+	}
+	
+	//change the finish button's onclick function
+	if (sessionStorage.getItem("tournamentType") != "Round Robin") {
+		document.getElementById("finish").onclick = function() {getNewBracketFromGroups()};
 	}
 
 	players = randomize(players);
@@ -256,6 +259,37 @@ function groupMatchOutcome(button) {
 	var x = button.parentElement.remove();
 
 	sortTable();
+
+	if (document.getElementById("matches").childElementCount == 0) {
+		finish.hidden = false;
+		if (sessionStorage.getItem("tournamentType") == "Round Robin") {
+			let num = checkWinners();
+			for(let i = 0; i < num; i++) {
+				sessionStorage.setItem(i, winners[i]);
+			}
+			let n = num.toString();
+			sessionStorage.setItem("numOfWinners", n);
+		} 
+	}
+}
+
+var winners = [];
+
+function checkWinners() {
+	var table = document.getElementById("groupTable");
+	winners.push(table.rows[1].getElementsByTagName("TD")[0].innerHTML);
+
+	for (let i = 1; i < table.rows.length - 1; i++) {
+		var x = table.rows[i].getElementsByTagName("TD")[1];
+    var y = table.rows[i + 1].getElementsByTagName("TD")[1];
+
+		if (Number(x.innerHTML) == Number(y.innerHTML)) {
+			winners.push(table.rows[i + 1].getElementsByTagName("TD")[0].innerHTML);
+		} else {
+			break;
+		}
+	}
+	return winners.length;
 }
 
 //from w3schools.com/howto/howto_js_sort_table.asp
@@ -372,18 +406,42 @@ function matchGet(button) {
 	if (document.getElementById(nextRound.toString()) == null){
 		next.innerHTML = winner.substring(0, winner.indexOf('<'));
 		finish.hidden = false;
-		sessionStorage.setItem(10, next.innerHTML);
+		sessionStorage.setItem("numOfWinners", "1");
+		sessionStorage.setItem(0, next.innerHTML);
 	} else {
 		next.innerHTML = winner;
 	}
 }
 
 function showWinScreen() {
-	window.location.href="../html/winnerScreen.html";
+	var tournamentTypeN = sessionStorage.getItem("tournamentType");
+	if (tournamentTypeN == "Bracket" || tournamentTypeN == "Round Robin") {
+		window.location.href="../html/winnerScreen.html";
+	} 
+}
+
+function getNewBracketFromGroups(){
+	var table = document.getElementById("groupTable");
+
+	for (let i = 1; i < table.rows.length - 1; i++) {
+		sessionStorage.setItem(i-1, table.rows[i].getElementsByTagName("TD")[0].innerHTML);
+	}
+
+	if (sessionStorage.getItem("numOfPlayers") < 8) {
+		sessionStorage.setItem("numOfPlayers", 4);
+		window.location.href = "../html/tournament.html";
+
+	} else {
+		sessionStorage.setItem("numOfPlayers", 8);
+		window.location.href = "../html/tournament8.html";
+	}
 }
 
 function winLoad() {
-	document.getElementById("winner").innerHTML = sessionStorage.getItem(10);
+	for (let i = 0; i < sessionStorage.getItem("numOfWinners"); i++) {
+		winners[i] = sessionStorage.getItem(i);
+	}
+	document.getElementById("winner").innerHTML = arrToString(winners);
 }
 
 function arrToString(arr) {
