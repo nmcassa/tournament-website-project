@@ -7,8 +7,9 @@
 		<script src="../js/script.js"></script>
 		<script src="../js/voidCalls.js"></script>
 		<link rel="stylesheet" type="text/css" href="../styles.css">
+		<link rel="stylesheet" type="text/css" href="../leaderboardPage.css">
 	</head>
-	<body onload="setPlayersGroup()">
+	<body>
 		<header>
 			<nav>
 				<ul>
@@ -19,23 +20,26 @@
 				</ul>
 			</nav>
 		</header>
-		<h1>Tournaments</h1>
-		<section>
-			<table id="groupTable">
-				<tr>
-    			<th>Name</th>
-    			<th>Wins</th>
-    			<th>Losses</th>
-  			</tr>
-			</table>
+		<h1>Local Stats</h1>
+		<h3>*These stats are only from tournaments played on this device*</h3>
+		<section class="portion" id="winPercentage">
+			<ol>Win Percentage
+				<li>Nick 98%</li>
+				<li>Luke 45%</li>
+			</ol>
 		</section>
-		<section>
-			<div id="matches">
-			</div>
+		<section class="portion" id="wins">
+			<ol>Total Wins
+				<li>Nick 1000</li>
+				<li>Luke 11</li>
+			</ol>
 		</section>
-			<div>
-				<input type="button" hidden onclick="showWinScreen()" value="Finish Groups" id="finish">
-			</div>
+		<section class="portion" id="tournamentWins">
+			<ol>Total Tournament Wins
+				<li>Nick 150</li>
+				<li>Luke 1</li>
+			</ol>
+		</section>
 		<footer><a href="contact.html">Contact</a></footer>
 	</body>
 </html>

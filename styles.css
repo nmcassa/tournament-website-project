@@ -6,7 +6,7 @@ body {
 	padding: 0;
 }
 
-header, footer{
+header, footer, button, input[type="button"], #groupTable{
 	background: rgb(164, 74, 63);
 	color: rgb(203, 223, 189);
 }
@@ -69,7 +69,6 @@ input[type="text"] {
 }
 
 /* bracket stuff */
-
 .bracket {
 	display: flex;
 	flex-direction: row;
@@ -125,8 +124,6 @@ li.game-bottom{
 	margin-left: auto;
 	margin-right: auto;
 	width: 30%;
-	background-color: rgb(164, 74, 63);
-	color: rgb(203, 223, 189);
 }
 
 table, th, td {
@@ -153,10 +150,7 @@ th, td {
 }
 
 /* buttons */
-
 button, input[type="button"] {
-	background-color: rgb(164, 74, 63);
-	color: rgb(203, 223, 189);
 	padding: 10px 20px;
 	margin: 0px 0;
 	cursor: pointer;
@@ -205,7 +199,6 @@ nav li {
 }
 
 /* links */
-
 a {
 	text-decoration: none;
 	display: inline-block;
@@ -219,7 +212,9 @@ header a:link, header a:visited, footer a:link, footer a:visited {
 	color:  rgb(203, 223, 189);
 }
 
-div a:link, div a:visited {color: rgb(164, 74, 63);}
+div a:link, div a:visited {
+	color: rgb(164, 74, 63);
+}
 
 ul li a, footer a {
 	padding: 21px 32px;
@@ -232,7 +227,6 @@ ul li a:hover, footer a:hover {
 }
 
 /* pictures */
-
 .monsters {
 	background-image: url("images/pong players.png");
 	background-repeat: no-repeat;
@@ -254,9 +248,7 @@ ul li a:hover, footer a:hover {
 	width: 64px;
 }
 
-
 /* contacts */
-
 .socials {
 	padding: 25px;
 	display: flex;

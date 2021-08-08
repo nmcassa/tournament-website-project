@@ -1,0 +1,21 @@
+section {
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+	list-style-position: inside;
+}
+
+.portion {
+	font-size: 30px;
+}
+
+.portion ol {
+	font-weight: bold;
+	line-height: 175%;
+}
+
+.portion li {
+	font-size: 25px;
+	font-weight: normal;
+	line-height: 125%;
+}
