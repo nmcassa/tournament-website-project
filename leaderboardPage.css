@@ -5,17 +5,22 @@ section {
 	list-style-position: inside;
 }
 
+h3 {
+	font-size: 36px;
+}
+
 .portion {
-	font-size: 30px;
+	font-size: 28px;
 }
 
 .portion ol {
+	white-space: nowrap;
 	font-weight: bold;
 	line-height: 175%;
 }
 
 .portion li {
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: normal;
 	line-height: 125%;
 }

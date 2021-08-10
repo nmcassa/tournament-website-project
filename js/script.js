@@ -4,6 +4,7 @@ var players = [];
 var playerNum = -1;
 var winner;
 myStorage = window.sessionStorage;
+myStorage = window.localStorage;
 
 function addPlayer() {
 	//add a second player input for doubles
@@ -215,6 +216,10 @@ function groupMatchOutcome(button) {
 		loser = c[0].value;
 	}
 
+	//leaderboard add
+	addWinnerToLeaderboard(winner);
+	addLoserToLeaderboard(loser);
+
 	//increment wins by one on the table
 	var winningId = winner + "Wins";
 	var numOfWins = parseInt(document.getElementById(winningId).innerHTML);
@@ -330,16 +335,4 @@ function winLoad() {
 		winners[i] = sessionStorage.getItem(i);
 	}
 	document.getElementById("winner").innerHTML = arrToString(winners);
-}
-
-function arrToString(arr) {
-	var str = "";
-	for (let i = 0; i < arr.length; i++) {
-		if (i == arr.length-1) {
-			str = str + arr[i];
-		} else {
-			str = str + arr[i] + ", ";
-		}
-	}
-	return str;
 }

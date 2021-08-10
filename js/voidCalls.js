@@ -22,6 +22,18 @@ function randomize(arr) {
 	return arr;
 }
 
+function arrToString(arr) {
+	var str = "";
+	for (let i = 0; i < arr.length; i++) {
+		if (i == arr.length-1) {
+			str = str + arr[i];
+		} else {
+			str = str + arr[i] + " ";
+		}
+	}
+	return str;
+}
+
 //from w3schools.com/howto/howto_js_sort_table.asp
 function sortTable() {
   var table, rows, switching, i, x, y, shouldSwitch;
