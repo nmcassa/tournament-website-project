@@ -30,6 +30,10 @@ function addWinnerToLeaderboard(winner) {
 }
 
 function subtractWinnerFromLeaderboard(dumb) {
+	if (dumb.charAt(1) == ".") {
+		dumb = dumb.substring(3);
+	}
+
 	const localPlayers = localStorage.getItem("leaderboardArray").split(" ");
 	var localWins = localStorage.getItem("leaderboardWins").split(" ");
 	for (let i = 0; i < localPlayers.length; i++) {
@@ -44,6 +48,10 @@ function subtractWinnerFromLeaderboard(dumb) {
 }
 
 function addLoserToLeaderboard(loser) {
+	if (loser.charAt(1) == ".") {
+		loser = loser.substring(3);
+	}
+
 	if (localStorage.getItem("leaderboardArray") == null) {
 		localStorage.setItem("leaderboardArray", loser);
 		localStorage.setItem("leaderboardWins", 0);
@@ -71,6 +79,10 @@ function addLoserToLeaderboard(loser) {
 }
 
 function addTournamentWin(winner) {
+	if (winner.charAt(1) == ".") {
+		winner = winner.substring(3);
+	}
+
 	var winners = winner.split(" ");
 	const localPlayers = localStorage.getItem("leaderboardArray").split(" ");
 	var localTournamentWins = localStorage.getItem("leaderboardTournamentWins").split(" ");
