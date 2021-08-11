@@ -228,7 +228,7 @@ ul li a:hover, footer a:hover {
 
 /* pictures */
 .monsters {
-	background-image: url("images/red solo cup upscaled.png");
+	background-image: url("../images/red solo cup upscaled.png");
 	background-repeat: no-repeat;
 	background-size: 256px;
 	height: 256px;
@@ -240,7 +240,7 @@ ul li a:hover, footer a:hover {
 }
 
 .cup {
-	background-image: url("images/red solo cup.png");
+	background-image: url("../images/red solo cup.png");
 	background-size: 64px;
 	display: inline-block;
 	text-indent: -999999px;

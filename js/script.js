@@ -233,7 +233,7 @@ function groupMatchOutcome(button) {
 	document.getElementById(loserId).innerHTML = numOfLosses;
 
 	//get rid of the match div
-	var x = button.parentElement.remove();
+	button.parentElement.remove();
 
 	sortTable();
 
@@ -294,13 +294,15 @@ function matchGet(button) {
 	var y = num + z;
 
 	var next = document.getElementById(y.toString());
-	var nextRound = z +10;
+	var nextRound = z + 10;
+
+	addWinnerToLeaderboard(winner.substring(0, winner.indexOf('<')));
 
 	if (document.getElementById(nextRound.toString()) == null){
 		next.innerHTML = winner.substring(0, winner.indexOf('<'));
 		finish.hidden = false;
 		sessionStorage.setItem("numOfWinners", "1");
-		sessionStorage.setItem(0, next.innerHTML);
+		sessionStorage.setItem("winner", next.innerHTML);
 	} else {
 		next.innerHTML = winner;
 	}
@@ -308,6 +310,15 @@ function matchGet(button) {
 
 function showWinScreen() {
 	var tournamentTypeN = sessionStorage.getItem("tournamentType");
+	if (tournamentTypeN != "Round Robin") {
+		for (let i = 0; i < sessionStorage.getItem("numOfPlayers"); i++) {
+			if (sessionStorage.getItem("winner") == sessionStorage.getItem(i)) {}
+			else {
+				addLoserToLeaderboard(sessionStorage.getItem(i));
+			}
+		}
+	}
+
 	if (tournamentTypeN == "Bracket" || tournamentTypeN == "Round Robin") {
 		window.location.href="../html/winnerScreen.html";
 	} 
@@ -331,8 +342,13 @@ function getNewBracketFromGroups(){
 }
 
 function winLoad() {
-	for (let i = 0; i < sessionStorage.getItem("numOfWinners"); i++) {
-		winners[i] = sessionStorage.getItem(i);
+	if (sessionStorage.getItem("tournamentType") != "Round Robin") {
+		document.getElementById("winner").innerHTML = sessionStorage.getItem("winner");
+	} else {
+		for (let i = 0; i < sessionStorage.getItem("numOfWinners"); i++) {
+			winners[i] = sessionStorage.getItem(i);
+		}
+		document.getElementById("winner").innerHTML = arrToString(winners);
 	}
-	document.getElementById("winner").innerHTML = arrToString(winners);
+	addTournamentWin(document.getElementById("winner").innerHTML);
 }

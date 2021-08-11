@@ -1,3 +1,31 @@
+function sortParallel(firstArr, secondArr, thirdArr, fourthArr) {
+	for (let i = 0; i < secondArr.length; i++) {
+		var max = i;
+		for (let j = i+1; j < secondArr.length; j++) {
+			if (secondArr[j] > secondArr[max]) {
+				max = j;
+			}
+		}
+		swapA(secondArr, i, max);
+		swapA(firstArr, i, max);
+		swapA(thirdArr, i, max);
+		swapA(fourthArr, i, max);
+	}
+}
+
+function secondSort(arr, arr2) {
+	for (let i = 0; i < arr.length; i++) {
+		var max = i;
+		for (let j = i+1; j < arr.length; j++) {
+			if (arr2[j] > arr2[max]) {
+				max = j;
+			}
+		}
+		swapA(arr, i, max);
+		swapA(arr2, i, max);
+	}
+}
+
 function swapA(arr, one, two) {
 	var temp;
 	temp = arr[one];

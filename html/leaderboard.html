@@ -6,10 +6,11 @@
 		<link rel="icon" href="../images/red solo cup.png">
 		<script src="../js/script.js"></script>
 		<script src="../js/voidCalls.js"></script>
-		<link rel="stylesheet" type="text/css" href="../styles.css">
-		<link rel="stylesheet" type="text/css" href="../leaderboardPage.css">
+		<script src="../js/leaderboard.js"></script>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../css/leaderboardPage.css">
 	</head>
-	<body>
+	<body onload="setLeaderboard()">
 		<header>
 			<nav>
 				<ul>
@@ -22,16 +23,16 @@
 		</header>
 		<h1>Local Stats</h1>
 		<h3>*These stats are only from tournaments played on this device*</h3>
-		<section class="portion" id="winPercentage">
-			<ol>Win Percentage
+		<section class="portion">
+			<ol id="winPercentage">Win Percentage
 			</ol>
 		</section>
-		<section class="portion" id="wins">
-			<ol>Total Wins
+		<section class="portion">
+			<ol id="wins">Total Wins
 			</ol>
 		</section>
-		<section class="portion" id="tournamentWins">
-			<ol>Total Tournament Wins
+		<section class="portion">
+			<ol id="tournamentWins">Total Tournament Wins
 			</ol>
 		</section>
 		<footer><a href="contact.html">Contact</a></footer>
