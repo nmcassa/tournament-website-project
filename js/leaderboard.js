@@ -29,6 +29,20 @@ function addWinnerToLeaderboard(winner) {
 	}
 }
 
+function subtractWinnerFromLeaderboard(dumb) {
+	const localPlayers = localStorage.getItem("leaderboardArray").split(" ");
+	var localWins = localStorage.getItem("leaderboardWins").split(" ");
+	for (let i = 0; i < localPlayers.length; i++) {
+		if (localPlayers[i] == dumb) {
+			var winningIndex = i;
+		}
+	}
+
+	//this changes the local arr and then changes the localStorage to that arr
+	localWins[winningIndex] = parseInt(localWins[winningIndex]) - 1;
+	localStorage.setItem("leaderboardWins", arrToString(localWins));
+}
+
 function addLoserToLeaderboard(loser) {
 	if (localStorage.getItem("leaderboardArray") == null) {
 		localStorage.setItem("leaderboardArray", loser);

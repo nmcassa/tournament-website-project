@@ -294,11 +294,18 @@ function matchGet(button) {
 	var y = num + z;
 
 	var next = document.getElementById(y.toString());
-	var nextRound = z + 10;
+	var nextRound = document.getElementById((z + 10).toString());
 
+	if (next.innerHTML != "") {
+		if (nextRound == null) {
+			subtractWinnerFromLeaderboard(next.innerHTML);
+		} else {
+			subtractWinnerFromLeaderboard(next.innerHTML.substring(0, next.innerHTML.indexOf('<')));
+		}
+	}
 	addWinnerToLeaderboard(winner.substring(0, winner.indexOf('<')));
 
-	if (document.getElementById(nextRound.toString()) == null){
+	if (nextRound == null){
 		next.innerHTML = winner.substring(0, winner.indexOf('<'));
 		finish.hidden = false;
 		sessionStorage.setItem("numOfWinners", "1");
