@@ -124,13 +124,23 @@ function setLeaderboard() {
 	var localWins = intifyArr(localStorage.getItem("leaderboardWins").split(" "));
 	var localLosses = intifyArr(localStorage.getItem("leaderboardLosses").split(" "));
 	var localTournaWins = intifyArr(localStorage.getItem("leaderboardTournamentWins").split(" "));
+	var localWinPercentage = [];
 
-	sortParallel(localLosses, localWins, localPlayers, localTournaWins);
+	for (let i = 0; i < localPlayers.length; i++) {
+		localWinPercentage.push(findWinPercentage(parseInt(localWins[i]), parseInt(localLosses[i])));
+	}
+
+	sortParallel(localLosses, localWins, localPlayers, localTournaWins, localWinPercentage);
+
+	alert(localPlayers + "" + localWinPercentage);
 
 	setTotalWins(localPlayers, localWins);
-	setWinPercent(localPlayers, localWins, localLosses);
+	
+	secondSort(localPlayers, localWinPercentage, localTournaWins);
 
-	secondSort(localPlayers, localTournaWins);
+	setWinPercent(localPlayers, localWinPercentage);
+
+	thirdSort(localPlayers, localTournaWins);
 
 	setTournamentWins(localPlayers, localTournaWins);
 }
@@ -150,12 +160,10 @@ function setTotalWins(arr, numsArr) {
 	}
 }
 
-function setWinPercent(arr, winArr, loseArr) {
+function setWinPercent(arr, numsArr) {
 	for (let i = 0; i < arr.length; i++) {
 		var newListItem = document.createElement("li");
-		newListItem.innerHTML = arr[i] + ": " + 
-			Number.parseFloat((winArr[i] / (parseInt(loseArr[i]) + parseInt(winArr[i]))*100).toPrecision(2))
-			+ "%";
+		newListItem.innerHTML = arr[i] + ": " + numsArr[i] + "%";
 		winPercentage.append(newListItem);
 	}
 }

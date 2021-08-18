@@ -1,4 +1,4 @@
-function sortParallel(firstArr, secondArr, thirdArr, fourthArr) {
+function sortParallel(firstArr, secondArr, thirdArr, fourthArr, fifthArr) {
 	for (let i = 0; i < secondArr.length; i++) {
 		var max = i;
 		for (let j = i+1; j < secondArr.length; j++) {
@@ -8,12 +8,27 @@ function sortParallel(firstArr, secondArr, thirdArr, fourthArr) {
 		}
 		swapA(secondArr, i, max);
 		swapA(firstArr, i, max);
-		swapA(thirdArr, i, max);
+		swapA(thirdArr, i, max); //i hate myself
 		swapA(fourthArr, i, max);
+		swapA(fifthArr, i, max);
 	}
 }
 
-function secondSort(arr, arr2) {
+function secondSort(arr, arr2, arr3) {
+	for (let i = 0; i < arr.length; i++) {
+		var max = i;
+		for (let j = i+1; j < arr.length; j++) {
+			if (arr2[j] > arr2[max]) {
+				max = j;
+			}
+		}
+		swapA(arr, i, max);
+		swapA(arr2, i, max);
+		swapA(arr3, i, max);
+	}
+}
+
+function thirdSort(arr, arr2) {
 	for (let i = 0; i < arr.length; i++) {
 		var max = i;
 		for (let j = i+1; j < arr.length; j++) {
@@ -24,6 +39,10 @@ function secondSort(arr, arr2) {
 		swapA(arr, i, max);
 		swapA(arr2, i, max);
 	}
+}
+
+function findWinPercentage(wins, losses) {
+	return Number.parseFloat(((wins / (losses + wins)) * 100).toPrecision(2));
 }
 
 function swapA(arr, one, two) {
