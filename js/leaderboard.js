@@ -132,8 +132,6 @@ function setLeaderboard() {
 
 	sortParallel(localLosses, localWins, localPlayers, localTournaWins, localWinPercentage);
 
-	alert(localPlayers + "" + localWinPercentage);
-
 	setTotalWins(localPlayers, localWins);
 	
 	secondSort(localPlayers, localWinPercentage, localTournaWins);
